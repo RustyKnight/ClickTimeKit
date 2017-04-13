@@ -1,0 +1,3 @@
+github "RustyKnight/Hydra" "master"
+github "RustyKnight/SwiftyJSON" "master"
+#github "SwiftyBeaver/SwiftyBeaver"
