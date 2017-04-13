@@ -162,7 +162,6 @@ class JobAPIFunction: BaseJobsAPIFunction<Job> {
 			session: APISession,
 			withID id: String,
 			withChildIDs: Bool = false) {
-		// /API/1.3/Companies/{CompanyID}/Users/{UserID}/JobsUPDATED
 		var urlComponents = URLComponents()
 		urlComponents.scheme = "https"
 		urlComponents.host = "app.clicktime.com"

@@ -16,9 +16,10 @@
 		129C1AF71E9F2AED00389FDC /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B7A031E9F0B3200606376 /* SwiftyJSON.framework */; };
 		129C1AF81E9F2AED00389FDC /* Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B7A001E9F002A00606376 /* Hydra.framework */; };
 		3ED4A6248BF0B946F2FCFE78 /* APIFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A7516F3DF010957F22CF /* APIFunction.swift */; };
-		3ED4A84BD30DFBC6C2459D27 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A27EA21007B1DB876F72 /* Session.swift */; };
+		3ED4A84BD30DFBC6C2459D27 /* SessionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A27EA21007B1DB876F72 /* SessionFunction.swift */; };
+		3ED4A8EDB913C92B7655B78F /* TaskFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A58733D092577E4632B4 /* TaskFunction.swift */; };
 		3ED4A940393A51FF15695DE7 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A59F7F8D8CA74434F7D0 /* HTTPStatusCode.swift */; };
-		3ED4A99968FFBB19BD33C1CF /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A7B7E4EB16D9883F552A /* Jobs.swift */; };
+		3ED4A99968FFBB19BD33C1CF /* JobFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A7B7E4EB16D9883F552A /* JobFunction.swift */; };
 		3ED4A9AED934FF99A938211C /* ClickTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A732D77A3AC0DEB3E052 /* ClickTime.swift */; };
 		3ED4AFCB5C052792600ABB92 /* String+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A573510E62FF68DBC319 /* String+Base64.swift */; };
 /* End PBXBuildFile section */
@@ -44,12 +45,13 @@
 		127B7A001E9F002A00606376 /* Hydra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hydra.framework; path = Carthage/Build/iOS/Hydra.framework; sourceTree = "<group>"; };
 		127B7A031E9F0B3200606376 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		129C1AF51E9F283C00389FDC /* TestSessionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSessionFunction.swift; sourceTree = "<group>"; };
-		3ED4A27EA21007B1DB876F72 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		3ED4A27EA21007B1DB876F72 /* SessionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFunction.swift; sourceTree = "<group>"; };
 		3ED4A573510E62FF68DBC319 /* String+Base64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Base64.swift"; sourceTree = "<group>"; };
+		3ED4A58733D092577E4632B4 /* TaskFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskFunction.swift; sourceTree = "<group>"; };
 		3ED4A59F7F8D8CA74434F7D0 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		3ED4A732D77A3AC0DEB3E052 /* ClickTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickTime.swift; sourceTree = "<group>"; };
 		3ED4A7516F3DF010957F22CF /* APIFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFunction.swift; sourceTree = "<group>"; };
-		3ED4A7B7E4EB16D9883F552A /* Jobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
+		3ED4A7B7E4EB16D9883F552A /* JobFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				3ED4A7516F3DF010957F22CF /* APIFunction.swift */,
-				3ED4A27EA21007B1DB876F72 /* Session.swift */,
-				3ED4A7B7E4EB16D9883F552A /* Jobs.swift */,
+				3ED4A27EA21007B1DB876F72 /* SessionFunction.swift */,
+				3ED4A7B7E4EB16D9883F552A /* JobFunction.swift */,
+				3ED4A58733D092577E4632B4 /* TaskFunction.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -261,8 +264,9 @@
 				3ED4AFCB5C052792600ABB92 /* String+Base64.swift in Sources */,
 				3ED4A940393A51FF15695DE7 /* HTTPStatusCode.swift in Sources */,
 				3ED4A6248BF0B946F2FCFE78 /* APIFunction.swift in Sources */,
-				3ED4A84BD30DFBC6C2459D27 /* Session.swift in Sources */,
-				3ED4A99968FFBB19BD33C1CF /* Jobs.swift in Sources */,
+				3ED4A84BD30DFBC6C2459D27 /* SessionFunction.swift in Sources */,
+				3ED4A99968FFBB19BD33C1CF /* JobFunction.swift in Sources */,
+				3ED4A8EDB913C92B7655B78F /* TaskFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
