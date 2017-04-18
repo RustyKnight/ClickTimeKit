@@ -1,8 +1,8 @@
 //
-//  TestJobsFunction.swift
+//  TestTimeEntryFunction.swift
 //  ClickTimeKit
 //
-//  Created by Shane Whitehead on 13/4/17.
+//  Created by Shane Whitehead on 18/4/17.
 //  Copyright © 2017 KaiZen Enterprises. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import XCTest
 import SwiftyBeaver
 import Hydra
 
-class TestJobsFunction: XCTestCase {
-    
+class TestTimeEntryFunction: XCTestCase {
+	
 	override func setUp() {
 		super.setUp()
 		let credentials = Credentials(userName: "shane.whitehead@beamcommunications.com", password: "RustyKnight2001")
@@ -24,13 +24,13 @@ class TestJobsFunction: XCTestCase {
 		ClickTime.shared.logout()
 	}
 	
-	func testCanGetJobs() {
-		let asyncExpectation = expectation(description: "GetJobs")
+	func testCanGetTimeEntries() {
+		let asyncExpectation = expectation(description: "GetTimeEntries")
 		ClickTime.shared.session()
-			.then { (session: Session) -> Promise<[Job]> in
-				return ClickTime.shared.jobs(withChildIDs: true)
-			}.then { (jobs: [Job]) in
-				print("Processed \(jobs.count) jobs")
+			.then { (session: Session) -> Promise<[TimeEntry]> in
+				return ClickTime.shared.timeEntries()
+			}.then { (timeEntries: [TimeEntry]) in
+				print("Processed \(timeEntries.count) work entries")
 				asyncExpectation.fulfill()
 			}.catch { (error) -> (Void) in
 				XCTFail("\(error)")

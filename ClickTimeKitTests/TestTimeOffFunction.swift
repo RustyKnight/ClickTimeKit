@@ -1,8 +1,8 @@
 //
-//  TestJobsFunction.swift
+//  TestTimeOffFunction.swift
 //  ClickTimeKit
 //
-//  Created by Shane Whitehead on 13/4/17.
+//  Created by Shane Whitehead on 18/4/17.
 //  Copyright © 2017 KaiZen Enterprises. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import XCTest
 import SwiftyBeaver
 import Hydra
 
-class TestJobsFunction: XCTestCase {
-    
+class TestTimeOffFunction: XCTestCase {
+	
 	override func setUp() {
 		super.setUp()
 		let credentials = Credentials(userName: "shane.whitehead@beamcommunications.com", password: "RustyKnight2001")
@@ -24,13 +24,13 @@ class TestJobsFunction: XCTestCase {
 		ClickTime.shared.logout()
 	}
 	
-	func testCanGetJobs() {
-		let asyncExpectation = expectation(description: "GetJobs")
+	func testCanGetTask() {
+		let asyncExpectation = expectation(description: "GetTimeOffTypes")
 		ClickTime.shared.session()
-			.then { (session: Session) -> Promise<[Job]> in
-				return ClickTime.shared.jobs(withChildIDs: true)
-			}.then { (jobs: [Job]) in
-				print("Processed \(jobs.count) jobs")
+			.then { (session: Session) -> Promise<[TimeOffType]> in
+				return ClickTime.shared.timeOffTypes()
+			}.then { (types: [TimeOffType]) in
+				print("Processed \(types.count) time off types")
 				asyncExpectation.fulfill()
 			}.catch { (error) -> (Void) in
 				XCTFail("\(error)")
@@ -38,5 +38,4 @@ class TestJobsFunction: XCTestCase {
 		}
 		waitForExpectations(timeout: 30.0, handler: nil)
 	}
-	
 }

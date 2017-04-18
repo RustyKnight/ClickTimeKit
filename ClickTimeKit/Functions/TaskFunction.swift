@@ -12,7 +12,7 @@ public protocol Task {
 	var code: String? {get}
 	var displayName: String? {get}
 	var name: String? {get}
-	var recent: Bool {get}
+	var isRecent: Bool {get}
 	var taskID: String? {get}
 }
 
@@ -21,20 +21,16 @@ struct DefaultTask: Task {
 	let code: String?
 	let displayName: String?
 	let name: String?
-	let recent: Bool
+	let isRecent: Bool
 	let taskID: String?
 }
 
 public enum TaskError: Error {
-	case missingCompanyID
-	case missingSecurityLevel
-	case missingToken
-	case missingUserEmail
-	case missingUserID
-	case missingUserName
+	case missingActive
+	case missingRecent
 }
 
-class TaskAPIFunction: AnyAPIFunction<Task> {
+class TaskAPIFunction: AnyAPIFunction<[Task]> {
 
 	init(session: APISession) {
 		var urlComponents = URLComponents()
@@ -44,28 +40,33 @@ class TaskAPIFunction: AnyAPIFunction<Task> {
 		super.init(url: urlComponents.url!)
 	}
 
-	override func process(data: Data) throws -> Task {
+	func process(json: JSON) throws -> Task {
+
+		let isActive = try getBool(from: json, withKey: "Active", throwing: TaskError.missingActive)
+		let code = getStringOrNil(from: json, withKey: "Code")
+		let displayName = getStringOrNil(from: json, withKey: "DisplayName")
+		let name = getStringOrNil(from: json, withKey: "Name")
+		let isRecent = try getBool(from: json, withKey: "Recent", throwing: TaskError.missingRecent)
+		let taskID = getStringOrNil(from: json, withKey: "TaskID")
+
+		return DefaultTask(
+				isActive: isActive,
+				code: code,
+				displayName: displayName,
+				name: name,
+				isRecent: isRecent,
+				taskID: taskID)
+
+	}
+
+	override func process(data: Data) throws -> [Task] {
 		let json = JSON(data: data)
-//		{"CompanyID":"2WKe-QVTnODU",
-//		"SecurityLevel":"user",
-//		"Token":"Kg+TAXV0f2GmXcL1zWVT65TOw9vw0DxeIYeGIPcd3MU=",
-//		"UserEmail":"shane.whitehead@beamcommunications.com",
-//		"UserID":"2ftqN9ReYaZA",
-//		"UserName":"Shane Whitehead"}
 
-		let companyID = try getString(from: json, withKey: "CompanyID", throwing: SessionError.missingCompanyID)
-		let securityLevel = try getString(from: json, withKey: "SecurityLevel", throwing: SessionError.missingSecurityLevel)
-		let token = try getString(from: json, withKey: "Token", throwing: SessionError.missingToken)
-		let userEmail = try getString(from: json, withKey: "UserEmail", throwing: SessionError.missingUserEmail)
-		let userID = try getString(from: json, withKey: "UserID", throwing: SessionError.missingUserID)
-		let userName = try getString(from: json, withKey: "UserName", throwing: SessionError.missingUserName)
-
-		return DefaultSession(
-				companyID: companyID,
-				token: token,
-				userEmail: userEmail,
-				userID: userID,
-				userName: userName,
-				securityLevel: securityLevel)
+		var tasks: [Task] = []
+		for taskon in json.arrayValue {
+			let task = try process(json: taskon)
+			tasks.append(task)
+		}
+		return tasks
 	}
 }

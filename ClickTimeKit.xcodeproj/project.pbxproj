@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		123F14811E9F3AF800A69A44 /* TestJobsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F14801E9F3AF800A69A44 /* TestJobsFunction.swift */; };
+		125210131EA59785002F258B /* TestTasksFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125210121EA59785002F258B /* TestTasksFunction.swift */; };
+		125210151EA59FA8002F258B /* TestTimeOffFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125210141EA59FA8002F258B /* TestTimeOffFunction.swift */; };
+		125210171EA5AC68002F258B /* TestTimeEntryFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125210161EA5AC68002F258B /* TestTimeEntryFunction.swift */; };
 		127B79EF1E9EF78F00606376 /* ClickTimeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B79E51E9EF78F00606376 /* ClickTimeKit.framework */; };
 		127B79F61E9EF78F00606376 /* ClickTimeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 127B79E81E9EF78F00606376 /* ClickTimeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		127B7A011E9F002A00606376 /* Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B7A001E9F002A00606376 /* Hydra.framework */; };
@@ -15,6 +18,8 @@
 		129C1AF61E9F283C00389FDC /* TestSessionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129C1AF51E9F283C00389FDC /* TestSessionFunction.swift */; };
 		129C1AF71E9F2AED00389FDC /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B7A031E9F0B3200606376 /* SwiftyJSON.framework */; };
 		129C1AF81E9F2AED00389FDC /* Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B7A001E9F002A00606376 /* Hydra.framework */; };
+		3ED4A3476D289E1A82279FDF /* TimeOffTypeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A4E5640226B794FABB52 /* TimeOffTypeFunction.swift */; };
+		3ED4A528848C69B0B030A02D /* TimeEntryFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AC98196B2DCACF96ECB6 /* TimeEntryFunction.swift */; };
 		3ED4A6248BF0B946F2FCFE78 /* APIFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A7516F3DF010957F22CF /* APIFunction.swift */; };
 		3ED4A84BD30DFBC6C2459D27 /* SessionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A27EA21007B1DB876F72 /* SessionFunction.swift */; };
 		3ED4A8EDB913C92B7655B78F /* TaskFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A58733D092577E4632B4 /* TaskFunction.swift */; };
@@ -37,6 +42,9 @@
 /* Begin PBXFileReference section */
 		123F147D1E9F3AC900A69A44 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = "<group>"; };
 		123F14801E9F3AF800A69A44 /* TestJobsFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJobsFunction.swift; sourceTree = "<group>"; };
+		125210121EA59785002F258B /* TestTasksFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTasksFunction.swift; sourceTree = "<group>"; };
+		125210141EA59FA8002F258B /* TestTimeOffFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTimeOffFunction.swift; sourceTree = "<group>"; };
+		125210161EA5AC68002F258B /* TestTimeEntryFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTimeEntryFunction.swift; sourceTree = "<group>"; };
 		127B79E51E9EF78F00606376 /* ClickTimeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ClickTimeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		127B79E81E9EF78F00606376 /* ClickTimeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickTimeKit.h; sourceTree = "<group>"; };
 		127B79E91E9EF78F00606376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,12 +54,14 @@
 		127B7A031E9F0B3200606376 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		129C1AF51E9F283C00389FDC /* TestSessionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSessionFunction.swift; sourceTree = "<group>"; };
 		3ED4A27EA21007B1DB876F72 /* SessionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFunction.swift; sourceTree = "<group>"; };
+		3ED4A4E5640226B794FABB52 /* TimeOffTypeFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOffTypeFunction.swift; sourceTree = "<group>"; };
 		3ED4A573510E62FF68DBC319 /* String+Base64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Base64.swift"; sourceTree = "<group>"; };
 		3ED4A58733D092577E4632B4 /* TaskFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskFunction.swift; sourceTree = "<group>"; };
 		3ED4A59F7F8D8CA74434F7D0 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		3ED4A732D77A3AC0DEB3E052 /* ClickTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickTime.swift; sourceTree = "<group>"; };
 		3ED4A7516F3DF010957F22CF /* APIFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFunction.swift; sourceTree = "<group>"; };
 		3ED4A7B7E4EB16D9883F552A /* JobFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobFunction.swift; sourceTree = "<group>"; };
+		3ED4AC98196B2DCACF96ECB6 /* TimeEntryFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEntryFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +125,9 @@
 				127B79F51E9EF78F00606376 /* Info.plist */,
 				129C1AF51E9F283C00389FDC /* TestSessionFunction.swift */,
 				123F14801E9F3AF800A69A44 /* TestJobsFunction.swift */,
+				125210121EA59785002F258B /* TestTasksFunction.swift */,
+				125210141EA59FA8002F258B /* TestTimeOffFunction.swift */,
+				125210161EA5AC68002F258B /* TestTimeEntryFunction.swift */,
 			);
 			path = ClickTimeKitTests;
 			sourceTree = "<group>";
@@ -144,6 +157,8 @@
 				3ED4A27EA21007B1DB876F72 /* SessionFunction.swift */,
 				3ED4A7B7E4EB16D9883F552A /* JobFunction.swift */,
 				3ED4A58733D092577E4632B4 /* TaskFunction.swift */,
+				3ED4A4E5640226B794FABB52 /* TimeOffTypeFunction.swift */,
+				3ED4AC98196B2DCACF96ECB6 /* TimeEntryFunction.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -267,6 +282,8 @@
 				3ED4A84BD30DFBC6C2459D27 /* SessionFunction.swift in Sources */,
 				3ED4A99968FFBB19BD33C1CF /* JobFunction.swift in Sources */,
 				3ED4A8EDB913C92B7655B78F /* TaskFunction.swift in Sources */,
+				3ED4A3476D289E1A82279FDF /* TimeOffTypeFunction.swift in Sources */,
+				3ED4A528848C69B0B030A02D /* TimeEntryFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,8 +291,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				125210151EA59FA8002F258B /* TestTimeOffFunction.swift in Sources */,
 				129C1AF61E9F283C00389FDC /* TestSessionFunction.swift in Sources */,
+				125210171EA5AC68002F258B /* TestTimeEntryFunction.swift in Sources */,
 				123F14811E9F3AF800A69A44 /* TestJobsFunction.swift in Sources */,
+				125210131EA59785002F258B /* TestTasksFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

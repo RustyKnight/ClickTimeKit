@@ -81,6 +81,18 @@ extension AnyAPIFunction {
 		return value
 	}
 
+	func getDecimal(from json: JSON, withKey key: String, throwing error: Error) throws -> Double {
+		let path: [JSONSubscriptType] = [key]
+		return try getDecimal(from: json, fromPath: path, throwing: error)
+	}
+	
+	func getDecimal(from json: JSON, fromPath path: [JSONSubscriptType], throwing error: Error) throws -> Double {
+		guard let value = json[path].double else {
+			throw error
+		}
+		return value
+	}
+
 	func getStringOrNil(from json: JSON, withKey key: String) -> String? {
 		let path: [JSONSubscriptType] = [key]
 		return getStringOrNil(from: json, fromPath: path)
@@ -88,6 +100,18 @@ extension AnyAPIFunction {
 
 	func getStringOrNil(from json: JSON, fromPath path: [JSONSubscriptType]) -> String? {
 		return json[path].string
+	}
+	
+	func getDateOrNil(from json: JSON, withKey key: String, using format: DateFormatter) -> Date? {
+		let path: [JSONSubscriptType] = [key]
+		return getDateOrNil(from: json, fromPath: path, using: format)
+	}
+	
+	func getDateOrNil(from json: JSON, fromPath path: [JSONSubscriptType], using format: DateFormatter) -> Date? {
+		guard let value = json[path].string else {
+			return nil
+		}
+		return format.date(from: value)
 	}
 
 	func getBool(from json: JSON, withKey key: String, throwing error: Error) throws -> Bool {

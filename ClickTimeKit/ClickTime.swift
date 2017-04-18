@@ -52,11 +52,14 @@ public class ClickTime {
 	}()
 
 	public func session() -> Promise<Session> {
-		return sessionFunction.execute()
-				.then({ (session: APISession) -> Promise<Session> in
-					self.availableSession = session
-					return Promise<Session>(resolved: session)
-				})
+		guard let availableSession = availableSession else {
+			return sessionFunction.execute()
+					.then({ (session: APISession) -> Promise<Session> in
+						self.availableSession = session
+						return Promise<Session>(resolved: session)
+					})
+		}
+		return Promise<Session>(resolved: availableSession)
 	}
 
 	public func jobs(withChildIDs: Bool = false,
@@ -73,6 +76,7 @@ public class ClickTime {
 			displayName: displayName,
 			number: number).execute()
 	}
+
 	public func job(withID id: String, withChildIDs: Bool = false) -> Promise<Job> {
 		guard let apiSession = availableSession else {
 			return Promise<Job>(rejected: ClickTimeError.invalidSession)
@@ -81,5 +85,26 @@ public class ClickTime {
 				session: apiSession,
 				withID: id,
 				withChildIDs: withChildIDs).execute()
+	}
+
+	public func tasks() -> Promise<[Task]> {
+		guard let apiSession = availableSession else {
+			return Promise<[Task]>(rejected: ClickTimeError.invalidSession)
+		}
+		return TaskAPIFunction(session: apiSession).execute();
+	}
+
+	public func timeOffTypes() -> Promise<[TimeOffType]> {
+		guard let apiSession = availableSession else {
+			return Promise<[TimeOffType]>(rejected: ClickTimeError.invalidSession)
+		}
+		return TimeOffTypeAPIFunction(session: apiSession).execute();
+	}
+
+	public func timeEntries() -> Promise<[TimeEntry]> {
+		guard let apiSession = availableSession else {
+			return Promise<[TimeEntry]>(rejected: ClickTimeError.invalidSession)
+		}
+		return TimeEntryAPIFunction(session: apiSession).execute();
 	}
 }
