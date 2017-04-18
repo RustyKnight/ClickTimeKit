@@ -12,9 +12,12 @@ protocol APIFunction {
 	func execute() -> Promise<Result>
 }
 
-protocol APIPostFunction: APIFunction {
+protocol APISendFunction: APIFunction {
 	var content: JSON {get}
 }
+
+typealias APIPostFunction = APISendFunction
+typealias APIDeleteFunction = APISendFunction
 
 public enum ClickTimeAPIError: Error {
 	case noDataAvailable
@@ -27,15 +30,24 @@ class AnyAPIFunction<ExpectedResult>: APIFunction {
 	typealias Result = ExpectedResult
 
 	let url: URL
+	internal var method: String
 
-	init(url: URL) {
+	init(url: URL, method: String = "GET") {
 		self.url = url
+		self.method = method
+	}
+
+	internal func makeRequest() throws -> URLRequest {
+		var request = URLRequest(url: self.url)
+		request.httpMethod = self.method
+		return request
 	}
 
 	func execute() -> Promise<ExpectedResult> {
 		return Promise<ExpectedResult> { fulfil, fail in
 			let session = ClickTime.shared.urlSession
-			let task = session.dataTask(with: self.url) {
+			let request = try self.makeRequest()
+			let task = session.dataTask(with: request) {
 				(data, response, error) in
 				if let error = error {
 					fail(error)
@@ -71,56 +83,39 @@ class AnyAPIFunction<ExpectedResult>: APIFunction {
 
 }
 
-class AnyAPIPostFunction<ExpectedResult>: AnyAPIFunction<ExpectedResult>, APIPostFunction {
+class AnyAPISendFunction<ExpectedResult>: AnyAPIFunction<ExpectedResult>, APISendFunction {
 
 	private(set) var content: JSON
 
-	init(url: URL, content: JSON) {
+	init(url: URL, content: JSON, method: String) {
 		self.content = content
-		super(url: url)
+		super.init(url: url, method: method)
 	}
 
-	override func execute() -> Promise<ExpectedResult> {
-		return Promise<ExpectedResult> { fulfil, fail in
-			let data = try self.content.rawData()
-			let session = ClickTime.shared.urlSession
-
-			var request = URLRequest(url: self.url)
-			request.httpMethod = "POST"
-			request.httpBody = data
-
-			let task = session.dataTask(with: request) {
-				(data, response, error) in
-				if let error = error {
-					fail(error)
-				}
-				guard let data = data else {
-					fail(ClickTimeAPIError.noDataAvailable)
-					return
-				}
-				guard let response = response as? HTTPURLResponse else {
-					fail(ClickTimeAPIError.unknownResponse)
-					return
-				}
-				guard response.statusCode == HTTPStatusCode.ok.rawValue else {
-					fail(ClickTimeAPIError.invalid(statusCode: response.statusCode))
-					return
-				}
-
-				do {
-					let result = try self.process(data: data)
-					fulfil(result)
-				} catch let error {
-					fail(error)
-				}
-			}
-
-			task.resume()
-		}
+	override func makeRequest() throws -> URLRequest {
+		var request = try super.makeRequest()
+		let data = try self.content.rawData()
+		request.httpBody = data
+		return request
 	}
 
 }
 
+class AnyAPIPostFunction<ExpectedResult>: AnyAPISendFunction<ExpectedResult> {
+
+	init(url: URL, content: JSON) {
+		super.init(url: url, content: content, method: "POST")
+	}
+
+}
+
+class AnyAPIDeleteFunction<ExpectedResult>: AnyAPISendFunction<ExpectedResult> {
+
+	init(url: URL, content: JSON) {
+		super.init(url: url, content: content, method: "DELETE")
+	}
+
+}
 
 extension AnyAPIFunction {
 

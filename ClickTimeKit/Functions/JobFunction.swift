@@ -48,7 +48,7 @@ public enum JobError: Error {
 }
 
 class BaseJobsAPIFunction<TypeOfJob>: AnyAPIFunction<TypeOfJob> {
-	override init(url: URL) {
+	init(url: URL) {
 		super.init(url: url)
 	}
 
