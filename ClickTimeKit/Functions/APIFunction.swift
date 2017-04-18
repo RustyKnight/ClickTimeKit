@@ -12,6 +12,10 @@ protocol APIFunction {
 	func execute() -> Promise<Result>
 }
 
+protocol APIPostFunction: APIFunction {
+	var content: JSON {get}
+}
+
 public enum ClickTimeAPIError: Error {
 	case noDataAvailable
 	case unknownResponse
@@ -66,6 +70,57 @@ class AnyAPIFunction<ExpectedResult>: APIFunction {
 	}
 
 }
+
+class AnyAPIPostFunction<ExpectedResult>: AnyAPIFunction<ExpectedResult>, APIPostFunction {
+
+	private(set) var content: JSON
+
+	init(url: URL, content: JSON) {
+		self.content = content
+		super(url: url)
+	}
+
+	override func execute() -> Promise<ExpectedResult> {
+		return Promise<ExpectedResult> { fulfil, fail in
+			let data = try self.content.rawData()
+			let session = ClickTime.shared.urlSession
+
+			var request = URLRequest(url: self.url)
+			request.httpMethod = "POST"
+			request.httpBody = data
+
+			let task = session.dataTask(with: request) {
+				(data, response, error) in
+				if let error = error {
+					fail(error)
+				}
+				guard let data = data else {
+					fail(ClickTimeAPIError.noDataAvailable)
+					return
+				}
+				guard let response = response as? HTTPURLResponse else {
+					fail(ClickTimeAPIError.unknownResponse)
+					return
+				}
+				guard response.statusCode == HTTPStatusCode.ok.rawValue else {
+					fail(ClickTimeAPIError.invalid(statusCode: response.statusCode))
+					return
+				}
+
+				do {
+					let result = try self.process(data: data)
+					fulfil(result)
+				} catch let error {
+					fail(error)
+				}
+			}
+
+			task.resume()
+		}
+	}
+
+}
+
 
 extension AnyAPIFunction {
 
